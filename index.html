@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analyst Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f6ff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #8b5fbf, #b19cd9);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(139, 95, 191, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo::before {
+            content: "📊";
+            margin-right: 8px;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #f8f6ff;
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f6ff, #e6d9f7);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 300px 1fr;
+            gap: 2rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-left {
+            text-align: left;
+        }
+
+        .hero-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-right {
+            text-align:center;
+            font-size: 5px;
+            
+        }
+
+        .img img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #b19cd9, #8b5fbf);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::before {
+            content: "👨‍💼";
+            font-size: 8rem;
+            position: absolute;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #4a2c6b;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .goal-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(139, 95, 191, 0.1);
+        }
+
+        .goal-section h3 {
+            color: #8b5fbf;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .goal-section p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #8b5fbf, #b19cd9);
+            color: white;
+         
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 95, 191, 0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #4a2c6b;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #8b5fbf, #b19cd9);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(139, 95, 191, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 95, 191, 0.2);
+        }
+
+        .project-card h3 {
+            color: #8b5fbf;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #e6d9f7, #f8f6ff);
+            color: #8b5fbf;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-link {
+            color: #8b5fbf;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #4a2c6b;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(139, 95, 191, 0.1);
+        }
+
+        .contact-info h3 {
+            color: #8b5fbf;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .contact-item::before {
+            content: attr(data-icon);
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(139, 95, 191, 0.1);
+        }
+
+        .contact-form h3 {
+            color: #8b5fbf;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #4a2c6b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e6d9f7;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8b5fbf;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #8b5fbf, #b19cd9);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 95, 191, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #4a2c6b, #8b5fbf);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #8b5fbf, #b19cd9);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 2px 10px rgba(139, 95, 191, 0.3);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 2rem;
+                border-radius: 0;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-left,
+            .hero-right {
+                text-align: center;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .profile-image::before {
+                font-size: 6rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-image::before {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Hi! I'm Oluwatobi</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="goal-section">
+                        <h3>Goal</h3>
+                        <p>The goal is to tell <strong>STORY</strong> from <strong>DATA</strong> and <strong>Insights</strong></p>
+                    </div>
+                </div>
+                
+                <div class="hero-center">
+                    <div class="img"><img src="./ProfilePic.png" alt=""></div>
+                    <h1 class="main-title">DATA<br>ANALYST</h1>
+                </div>
+                
+                <div class="hero-right">
+                    <a href="My CV.pdf" class="download-btn" onclick="downloadCV()">Download my CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>I'm a passionate beginner data analyst with growing expertise in transforming data into valuable insights that supports informed decision making. I have gained hands-on experience working with Excel, Power BI, SQL, and a foundational knowledge of python. I love transforming raw data into meaningful insights to tell a story.</p>
+                <br>
+                <p>Through various projects, I have built strong skills in data cleaning, visualization, database query, along with the ability to communicate insights clearly both to technical and non-technical audiences. I am detailed-oriented, analytical, and passionate about solving problems using data-driven approaches.</p>
+                <br>
+                <p>My goal is to apply these skills to real-world business challenges, contribute to data-informed strategies. With experience in Excel, Power BI, SQL, Python and various visualization tools, I'm committed to continuous learning and staying updated with the latest trends in data analytics.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Sales Performance Dashboard</h3>
+                    <p>Built an interactive Dashboard to analyze sales trends, track revenue performance, and highlight top-selling products for better business insights.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Excel</span>
+                        <span class="tech-tag">Pivot Tables</span>
+                        <span class="tech-tag">Pivot Charts</span>
+                        <span class="tech-tag">Formulas</span>
+                    </div>
+                    <a href="Pizza Sales.xlsx" class="project-link">View Project →</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Customer Segmentation Analysis</h3>
+                    <p>Performed segmentation analysis with interactive dashboard on customer data to identify customer segments based on recency, monetary value, and frequency contribution. Used data modeling and DAX to identify high-value customer distribution across segments, and provide insights to support targeted marketting strategies and business decision-making.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">DAX</span>
+                        <span class="tech-tag">Visualization</span>
+                        <span class="tech-tag">Charts</span>
+                    </div>
+                    <a href="Customer_Segmentation.pbix" class="project-link">View Project →</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>HR Analysis</h3>
+                    <p>Conducted HR data analysis using SQL to explore employee records, attendance. wrotes queries to identify workforce trends such as department headcount, gender count, and average employment length. Delivered insights that supporeted data-driven decisions in employee retention and workforce planning.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">SSMS</span>
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">Views</span>
+                    </div>
+                    <a href="HR-Analysis.zip" class="project-link">View Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-item" data-icon="📧">
+                        <span><a href="mailto:oluwatobidorcas2020@gmail.com">oluwatobidorcas2020@gmail.com</a></span>
+                    </div>
+                    <div class="contact-item" data-icon="📱">
+                        <span><a href="tel:+2349043299258">2349043299258</a></span>
+                    </div>
+                    <div class="contact-item" data-icon="📍">
+                        <span>Nigeria</span>
+                    </div>
+                    <div class="contact-item" data-icon="💼">
+                        <span><a href="http://linkedin.com/in/Oluwatobidorcas">linkedin</a></span>
+                    </div>
+                    <div class="contact-item" data-icon="🐙">
+                        <span><a href="http://github.com/yourusername">github</a></span>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Message</h3>
+                    <form onsubmit="sendMessage(event)">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Oyeyemi Oluwatobi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Close mobile menu after clicking
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Download CV function
+        function downloadCV() {
+            // Replace this with your actual CV file path
+            alert('CV download functionality - Replace this with your actual CV file path');
+            // Example: window.open('path/to/your/cv.pdf', '_blank');
+        }
+
+        // Contact form submission
+        function sendMessage(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Replace this with your actual form handling logic
+            alert(`Thank you ${name}! Your message has been sent. I'll get back to you soon.`);
+            event.target.reset();
+        }
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
